@@ -1,0 +1,23 @@
+crop,duration,temperature,soil,yield,season
+apple,3-4 years,15-25°C,Loamy soil,10-15 tons/hectare,Winter
+banana,10-12 months,20-35°C,Well-drained loamy soil,30-40 tons/hectare,All Season
+blackgram,3-4 months,25-35°C,Sandy loam soil,0.8-1 ton/hectare,Kharif
+chickpea,3-4 months,20-25°C,Well-drained loamy soil,1-2 tons/hectare,Rabi
+coconut,4-5 years,25-30°C,Sandy soil,8-10 tons/hectare,All Season
+coffee,3-4 years,15-28°C,Laterite soil,0.8-1 ton/hectare,Kharif
+cotton,5-6 months,21-30°C,Black soil,2-3 tons/hectare,Kharif
+grapes,2-3 years,15-30°C,Loamy soil,20-25 tons/hectare,Summer
+jute,4-5 months,24-37°C,Alluvial soil,2-3 tons/hectare,Kharif
+kidneybeans,3-4 months,15-30°C,Sandy loam soil,1-2 tons/hectare,Kharif
+lentil,3-4 months,18-30°C,Loamy soil,1-1.5 tons/hectare,Rabi
+maize,3-4 months,18-27°C,Well-drained loamy soil,3-4 tons/hectare,Kharif
+mango,3-5 years,24-30°C,Alluvial soil,8-10 tons/hectare,Summer
+mothbeans,2-3 months,25-35°C,Sandy soil,0.5-1 ton/hectare,Kharif
+mungbean,2-3 months,25-35°C,Sandy loam soil,0.8-1 ton/hectare,Kharif
+muskmelon,3-4 months,22-30°C,Sandy loam soil,10-15 tons/hectare,Summer
+orange,3-4 years,15-30°C,Well-drained loamy soil,10-15 tons/hectare,Winter
+papaya,9-12 months,22-35°C,Loamy soil,40-50 tons/hectare,All Season
+pigeonpeas,5-6 months,18-35°C,Sandy loam soil,1-2 tons/hectare,Kharif
+pomegranate,2-3 years,20-35°C,Well-drained loamy soil,10-15 tons/hectare,All Season
+rice,3-6 months,20-35°C,Clayey soil,3-6 tons/hectare,Kharif
+watermelon,3-4 months,25-35°C,Sandy loam soil,20-25 tons/hectare,Summer

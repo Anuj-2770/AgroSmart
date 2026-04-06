@@ -1,0 +1,125 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #212529;
+        font-size: 2rem;
+    }
+
+    .card {
+        border-radius: 20px;
+        border: none;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #212529;
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 15px;
+        border: 1px solid #c8e6c9;
+        transition: 0.3s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #2e7d32;
+        box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.15);
+    }
+
+    .btn-primary {
+        background-color: #3f3ce9;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #1b5e20;
+        transform: translateY(-2px);
+    }
+</style>
+<div class="container py-5">
+
+  <h2 class="text-center mb-4 fw-bold">
+    Get informed advice on fertilizer based on soil
+  </h2>
+
+  <div class="card shadow-lg p-4 mx-auto" 
+       style="max-width: 420px;  border-radius: 20px;">
+
+    <form method="POST" action="{{ url_for('fert_recommend') }}">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Nitrogen</label>
+        <input type="number" class="form-control"
+               name="nitrogen"
+               placeholder="Enter value (example: 50)" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Phosphorous</label>
+        <input type="number" class="form-control"
+               name="phosphorous"
+               placeholder="Enter value (example: 50)" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Potassium</label>
+        <input type="number" class="form-control"
+               name="pottasium"
+               placeholder="Enter value (example: 50)" required>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-bold">Crop you want to grow</label>
+        <select name="cropname" class="form-select" required>
+          <option value="" disabled selected>Select crop</option>
+          <option>rice</option>
+          <option>maize</option>
+          <option>chickpea</option>
+          <option>kidneybeans</option>
+          <option>pigeonpeas</option>
+          <option>mothbeans</option>
+          <option>mungbean</option>
+          <option>blackgram</option>
+          <option>lentil</option>
+          <option>pomegranate</option>
+          <option>banana</option>
+          <option>mango</option>
+          <option>grapes</option>
+          <option>watermelon</option>
+          <option>muskmelon</option>
+          <option>apple</option>
+          <option>orange</option>
+          <option>papaya</option>
+          <option>coconut</option>
+          <option>cotton</option>
+          <option>jute</option>
+          <option>coffee</option>
+        </select>
+      </div>
+
+      <button type="submit" 
+              class="btn btn-primary w-100 fw-bold py-2">
+        Predict
+      </button>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

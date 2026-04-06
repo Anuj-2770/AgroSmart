@@ -1,0 +1,185 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #212529;
+        font-size: 2rem;
+    }
+
+    .card {
+        border-radius: 20px;
+        border: none;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #212529;
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 15px;
+        border: 1px solid #c8e6c9;
+        transition: 0.3s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #2e7d32;
+        box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.15);
+    }
+
+    .btn-primary {
+        background-color: #3f3ce9;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #1b5e20;
+        transform: translateY(-2px);
+    }
+</style>
+<div class="container py-5">
+
+  <h2 class="text-center mb-4 fw-bold">
+    Find out the most suitable crop to grow in your farm
+  </h2>
+
+  <div class="row g-4">
+
+    <!-- Left Side: NPK Info Section -->
+    <div class="col-md-6">
+      <div class="card shadow-sm p-3" style="border-radius: 15px;">
+
+        <h5 class="fw-bold text-center mb-3">How to Get NPK Values?</h5>
+
+        <p style="font-size: 15px; color: #444;">
+          The crop prediction system works accurately when you enter the correct
+          NPK (Nitrogen, Phosphorus, Potassium) values. These values are obtained
+          from a <b>Soil Health Card</b> or a <b>Soil Test Report</b> provided by
+          government or private soil testing labs.
+        </p>
+
+        <img src="/static/images/soil_report.jpg"
+             alt="Soil Test Report Example"
+             class="img-fluid rounded shadow">
+
+        <p class="mt-3" style="font-size: 15px; color: #444;">
+          This soil report shows important parameters like NPK levels, pH value,
+          organic carbon, and overall nutrient status. AgroSmart uses these values
+          to determine which crop is best suited for your soil.
+          These detailed soil parameters ensure that the prediction model can provide 
+          the most accurate crop suggestions for your field.
+        </p>
+
+      </div>
+    </div>
+
+
+    <!-- Right Side: Form Section -->
+    <div class="col-md-6">
+      <div class="card shadow-lg p-4" style="border-radius: 20px;">
+
+        <form method="POST" action="{{ url_for('crop_prediction') }}">
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Nitrogen</label>
+            <input type="number" class="form-control" name="nitrogen" min="0" max="140"
+                   placeholder="Enter value (example: 50)" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Phosphorous</label>
+            <input type="number" class="form-control" name="phosphorous"  min="0" max="140"
+                   placeholder="Enter value (example: 50)" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Potassium</label>
+            <input type="number" class="form-control" name="pottasium"  min="0" max="140"
+                   placeholder="Enter value (example: 50)" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">pH Level</label>
+            <input type="number" step="0.01" class="form-control"
+                   name="ph"   min="0" max="14" placeholder="Enter value (example: 6.5)" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Rainfall (mm)</label>
+            <input type="number" step="0.01" class="form-control"
+                   name="rainfall"  min="0" max="500" placeholder="Enter value (example: 200)" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">State</label>
+            <select onchange="print_city('state', this.selectedIndex);"
+                    id="sts" name="stt" class="form-select" required></select>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-bold">City</label>
+            <select id="state" name="city" class="form-select" required></select>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+            Predict
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+
+    const N = document.querySelector("input[name='nitrogen']").value;
+    const P = document.querySelector("input[name='phosphorous']").value;
+    const K = document.querySelector("input[name='pottasium']").value;
+    const pH = document.querySelector("input[name='ph']").value;
+    const rain = document.querySelector("input[name='rainfall']").value;
+
+    // NPK range check
+    if (N < 0 || N > 140 || P < 0 || P > 140 || K < 0 || K > 140) {
+        alert("N, P, and K values must be between 0 and 140.");
+        e.preventDefault();
+        return;
+    }
+
+    // pH range check
+    if (pH < 0 || pH > 14) {
+        alert("pH value must be between 0 and 14.");
+        e.preventDefault();
+        return;
+    }
+
+    // Rainfall range check
+    if (rain < 0 || rain > 500) {
+        alert("Rainfall must be between 0 and 500 mm.");
+        e.preventDefault();
+        return;
+    }
+
+});
+</script>
+<script>
+  print_state("sts");
+</script>
+{% endblock %}

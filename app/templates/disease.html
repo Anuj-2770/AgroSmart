@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #212529;
+        font-size: 2rem;
+    }
+
+    .card {
+        border-radius: 20px;
+        border: none;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #212529;
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 15px;
+        border: 1px solid #c8e6c9;
+        transition: 0.3s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #2e7d32;
+        box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.15);
+    }
+
+    .btn-primary {
+        background-color: #3f3ce9;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #1b5e20;
+        transform: translateY(-2px);
+    }
+</style>
+<div class="container py-5">
+
+  <h2 class="text-center mb-4 fw-bold">
+    Find out which disease has been caught by your leaf
+  </h2>
+
+  <div class="card shadow-lg p-4 mx-auto" style="max-width: 400px; border-radius: 20px;">
+
+    <form method="post" enctype="multipart/form-data">
+
+      <h5 class="mb-3 fw-bold text-center">Please Upload The Image</h5>
+
+      <input type="file" name="file" class="form-control mb-3"
+             onchange="preview_image(event)">
+
+      <img id="output-image"
+           class="img-fluid rounded mb-3 d-none"/>
+
+      <button class="btn btn-primary w-100 fw-bold" type="submit">
+        Predict
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+function preview_image(event) {
+  var reader = new FileReader();
+  reader.onload = function () {
+    var output = document.getElementById('output-image');
+    output.src = reader.result;
+    output.classList.remove("d-none");
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+{% endblock %}
